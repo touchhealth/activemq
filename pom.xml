@@ -25,7 +25,7 @@
 
   <groupId>org.apache.activemq</groupId>
   <artifactId>activemq-parent</artifactId>
-  <version>5.12.4-SNAPSHOT</version>
+  <version>5.12.3.1.touch</version>
   <packaging>pom</packaging>
   <name>ActiveMQ</name>
   <inceptionYear>2005</inceptionYear>
@@ -210,18 +210,37 @@
     </mailingList>
   </mailingLists>
 
+  <!--
   <distributionManagement>
     <site>
-      <!-- this needs to match a server in your settings.xml with upload settings -->
       <id>activemq-website</id>
-      <!-- set the staging.siteURL in your ~/.m2/settings.xml in a release or other profile -->
       <url>${staging.siteURL}/maven/${project.version}</url>
-      <!--<url>${site-repo-url}</url>-->
     </site>
     <snapshotRepository>
       <id>apache.snapshots.https</id>
       <name>Apache Development Snapshot Repository</name>
       <url>https://repository.apache.org/content/repositories/snapshots</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
+  -->
+
+  <!-- Distribuição - TouchHealth -->
+  <distributionManagement>
+    <downloadUrl>
+      http://nexus.touchtec.com.br/content/repositories/releases
+    </downloadUrl>
+    <repository>
+      <id>touch-releases</id>
+      <name>Touch Releases</name>
+      <url>http://nexus.touchtec.com.br/content/repositories/releases
+      </url>
+    </repository>
+    <snapshotRepository>
+      <id>touch-snapshots</id>
+      <name>Touch Snapshots</name>
+      <url>http://nexus.touchtec.com.br/content/repositories/snapshots
+      </url>
       <uniqueVersion>false</uniqueVersion>
     </snapshotRepository>
   </distributionManagement>
