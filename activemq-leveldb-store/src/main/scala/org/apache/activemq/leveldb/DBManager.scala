@@ -785,6 +785,9 @@ class DBManager(val parent:LevelDBStore) {
     if( info.getDestination!=null ) {
       record.setDestinationName(info.getDestination.getQualifiedName)
     }
+    if ( info.getSubscribedDestination!=null) {
+      record.setSubscribedDestinationName(info.getSubscribedDestination.getQualifiedName)
+    }
     val collection = new CollectionRecord.Bean()
     collection.setType(SUBSCRIPTION_COLLECTION_TYPE)
     collection.setKey(lastCollectionKey.incrementAndGet())
@@ -855,7 +858,10 @@ class DBManager(val parent:LevelDBStore) {
             info.setSelector(sr.getSelector)
           }
           if(sr.hasDestinationName) {
-            info.setSubscribedDestination(ActiveMQDestination.createDestination(sr.getDestinationName, ActiveMQDestination.TOPIC_TYPE))
+            info.setDestination(ActiveMQDestination.createDestination(sr.getDestinationName, ActiveMQDestination.TOPIC_TYPE))
+          }
+          if( sr.hasSubscribedDestinationName ) {
+            info.setSubscribedDestination(ActiveMQDestination.createDestination(sr.getSubscribedDestinationName, ActiveMQDestination.TOPIC_TYPE))
           }
 
           var sub = DurableSubscription(key, sr.getTopicKey, info)
